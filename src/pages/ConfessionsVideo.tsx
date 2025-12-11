@@ -8,16 +8,16 @@ import ConfessionMusic from "@/components/ConfessionMusic";
 import RomanticVideoPlayer from "@/components/RomanticVideoPlayer";
 
 const confessionVideos = [
-  { id: 1, src: "/videos/confession-1.mp4", title: "My First Words to You", caption: "The day I knew you were special..." },
-  { id: 2, src: "/videos/confession-2.mp4", title: "Why I Love You", caption: "A thousand reasons, one heart..." },
-  { id: 3, src: "/videos/confession-3.mp4", title: "Our Journey Together", caption: "Every step with you is magic..." },
-  { id: 4, src: "/videos/confession-4.mp4", title: "My Promise to You", caption: "Forever isn't long enough..." },
-  { id: 5, src: "/videos/confession-5.mp4", title: "When I Miss You", caption: "Distance means nothing when you mean everything..." },
-  { id: 6, src: "/videos/confession-6.mp4", title: "Our Special Moments", caption: "Time stops when I'm with you..." },
-  { id: 7, src: "/videos/confession-7.mp4", title: "My Heart Speaks", caption: "Words fail where love prevails..." },
-  { id: 8, src: "/videos/confession-8.mp4", title: "Dreams of Us", caption: "You're my favorite dream come true..." },
-  { id: 9, src: "/videos/confession-9.mp4", title: "Love Letters", caption: "Written in the stars, sealed with a kiss..." },
-  { id: 10, src: "/videos/confession-10.mp4", title: "Forever Yours", caption: "My heart belongs to you, always..." },
+  { id: 1, src: "/videos/confessions/confession-1.mp4", title: "My First Words to You", caption: "The day I knew you were special..." },
+  { id: 2, src: "/videos/confessions/confession-2.mp4", title: "Why I Love You", caption: "A thousand reasons, one heart..." },
+  { id: 3, src: "/videos/confessions/confession-3.mp4", title: "Our Journey Together", caption: "Every step with you is magic..." },
+  { id: 4, src: "/videos/confessions/confession-4.mp4", title: "My Promise to You", caption: "Forever isn't long enough..." },
+  { id: 5, src: "/videos/confessions/confession-5.mp4", title: "When I Miss You", caption: "Distance means nothing when you mean everything..." },
+  { id: 6, src: "/videos/confessions/confession-6.mp4", title: "Our Special Moments", caption: "Time stops when I'm with you..." },
+  { id: 7, src: "/videos/confessions/confession-7.mp4", title: "My Heart Speaks", caption: "Words fail where love prevails..." },
+  { id: 8, src: "/videos/confessions/confession-8.mp4", title: "Dreams of Us", caption: "You're my favorite dream come true..." },
+  { id: 9, src: "/videos/confessions/confession-9.mp4", title: "Love Letters", caption: "Written in the stars, sealed with a kiss..." },
+  { id: 10, src: "/videos/confessions/confession-10.mp4", title: "Forever Yours", caption: "My heart belongs to you, always..." },
 ];
 
 const ConfessionsVideo = () => {
@@ -134,7 +134,7 @@ const ConfessionsVideo = () => {
           transition={{ delay: 1.5 }}
           className="text-center text-cream/50 font-quicksand text-sm mt-12"
         >
-          Add your confession videos as confession-1.mp4 through confession-10.mp4 in the public/videos folder
+          Add your confession videos as confession-1.mp4 through confession-10.mp4 in the public/videos/confessions folder
         </motion.p>
       </div>
 
