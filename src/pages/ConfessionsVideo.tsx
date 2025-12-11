@@ -4,6 +4,7 @@ import { Heart, Play, X, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import FloatingHearts from "@/components/FloatingHearts";
 import FallingPetals from "@/components/FallingPetals";
+import ConfessionMusic from "@/components/ConfessionMusic";
 
 const confessionVideos = [
   { id: 1, src: "/videos/confession-1.mp4", title: "My First Words to You", caption: "The day I knew you were special..." },
@@ -23,6 +24,9 @@ const ConfessionsVideo = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-midnight via-midnight-light to-lavender/20 relative overflow-hidden">
+      {/* Background Music */}
+      <ConfessionMusic />
+      
       {/* Ambient animations */}
       <FloatingHearts />
       <FallingPetals />
