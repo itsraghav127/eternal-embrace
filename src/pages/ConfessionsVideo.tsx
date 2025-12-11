@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import FloatingHearts from "@/components/FloatingHearts";
 import FallingPetals from "@/components/FallingPetals";
 import ConfessionMusic from "@/components/ConfessionMusic";
+import RomanticVideoPlayer from "@/components/RomanticVideoPlayer";
 
 const confessionVideos = [
   { id: 1, src: "/videos/confession-1.mp4", title: "My First Words to You", caption: "The day I knew you were special..." },
@@ -137,7 +138,7 @@ const ConfessionsVideo = () => {
         </motion.p>
       </div>
 
-      {/* Video Lightbox */}
+      {/* Video Lightbox with Romantic Player */}
       <AnimatePresence>
         {selectedVideo && (
           <motion.div
@@ -151,41 +152,20 @@ const ConfessionsVideo = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
-              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-rose/20 border border-rose/30 flex items-center justify-center text-cream hover:bg-rose/40 transition-colors"
+              className="absolute top-6 right-6 z-10 w-12 h-12 rounded-full bg-rose/20 border border-rose/30 flex items-center justify-center text-cream hover:bg-rose/40 transition-colors"
               onClick={() => setSelectedVideo(null)}
             >
               <X className="w-6 h-6" />
             </motion.button>
             
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              className="max-w-lg w-full max-h-[80vh] rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(255,182,193,0.4)]"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <video
-                src={confessionVideos.find(v => v.id === selectedVideo)?.src}
-                className="w-full h-full object-contain bg-black"
-                controls
-                autoPlay
+            <div onClick={(e) => e.stopPropagation()}>
+              <RomanticVideoPlayer
+                src={confessionVideos.find(v => v.id === selectedVideo)?.src || ""}
+                title={confessionVideos.find(v => v.id === selectedVideo)?.title}
+                caption={confessionVideos.find(v => v.id === selectedVideo)?.caption}
+                onClose={() => setSelectedVideo(null)}
               />
-            </motion.div>
-            
-            {/* Caption below video */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              className="absolute bottom-8 text-center"
-            >
-              <p className="font-playfair text-2xl text-rose mb-2">
-                {confessionVideos.find(v => v.id === selectedVideo)?.title}
-              </p>
-              <p className="font-quicksand text-cream/70 italic">
-                {confessionVideos.find(v => v.id === selectedVideo)?.caption}
-              </p>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
