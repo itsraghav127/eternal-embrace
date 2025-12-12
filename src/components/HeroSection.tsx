@@ -1,20 +1,22 @@
 import { motion } from "framer-motion";
-import heroCouple from "@/assets/hero-couple.jpg";
 import ParticleField from "./ParticleField";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax Effect */}
+      {/* Background Video with Parallax Effect */}
       <motion.div
         className="absolute inset-0 z-0"
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
       >
-        <img
-          src={heroCouple}
-          alt="Romantic couple walking under cherry blossoms"
+        <video
+          src="/videos/hero-video.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
           className="w-full h-full object-cover"
         />
         {/* Gradient Overlay */}
