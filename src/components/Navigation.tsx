@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { Heart, Video, Gamepad2 } from "lucide-react";
+import { Heart, Image, Video, Gamepad2, Home } from "lucide-react";
 
 const navItems = [
-  { path: "/", label: "Gallery", icon: Heart },
+  { path: "/", label: "Home", icon: Home },
+  { path: "/gallery", label: "Gallery", icon: Image },
   { path: "/confession", label: "Confession", icon: Video },
   { path: "/love-game", label: "Love Game", icon: Gamepad2 },
 ];

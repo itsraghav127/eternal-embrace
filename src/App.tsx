@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import WelcomePage from "./pages/WelcomePage";
 import PhotoGallery from "./pages/PhotoGallery";
 import ConfessionPage from "./pages/ConfessionPage";
 import LoveGame from "./pages/LoveGame";
@@ -17,7 +18,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<PhotoGallery />} />
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/gallery" element={<PhotoGallery />} />
           <Route path="/confession" element={<ConfessionPage />} />
           <Route path="/love-game" element={<LoveGame />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
