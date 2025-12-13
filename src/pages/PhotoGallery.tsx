@@ -187,14 +187,27 @@ const PhotoGallery = () => {
 
   return (
     <PageLayout>
-      {/* Hero Section */}
+      {/* Hero Section with Video Background */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Video Background */}
         <div className="absolute inset-0">
+          <video
+            className="w-full h-full object-cover"
+            src="/videos/love-tree.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-midnight-deep/60" />
+          
+          {/* Romantic glow effect */}
           <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none"
             style={{
               background:
-                "radial-gradient(circle, hsla(340, 80%, 70%, 0.15) 0%, transparent 70%)",
+                "radial-gradient(circle, hsla(340, 80%, 70%, 0.2) 0%, transparent 70%)",
             }}
             animate={{
               scale: [1, 1.3, 1],
