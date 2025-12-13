@@ -4,26 +4,48 @@ import { Heart, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const WhyILoveYouPage = () => {
-  const reasons = [
-    "The way your eyes light up when you smile",
-    "Your kindness that touches everyone around you",
-    "How you make ordinary moments feel magical",
-    "Your strength that inspires me every day",
-    "The sound of your laughter, my favorite melody",
-    "Your patience and understanding heart",
-    "The way you believe in me when I don't believe in myself",
-    "Your beautiful soul that shines so bright",
-    "How you make me want to be a better person",
-    "Every little thing that makes you, you",
+  const verses = [
+    {
+      title: "Not for Looks",
+      lines: [
+        "I don't love you because of how you look —",
+        "I love the way your eyes speak before words do,",
+        "and how your smile feels honest, not rehearsed."
+      ]
+    },
+    {
+      title: "Just One of Many",
+      lines: [
+        "If thousands admire you, I'm just one of them —",
+        "not louder, not better, just real.",
+        "If hundreds like you, I'm still one.",
+        "If only one person ever truly understands you,",
+        "I hope I'm worthy of being that one."
+      ]
+    },
+    {
+      title: "My Quiet Choice",
+      lines: [
+        "I don't need to be special in the crowd.",
+        "I just choose you — quietly, consistently,",
+        "without conditions, without pressure."
+      ]
+    },
+    {
+      title: "The Truth",
+      lines: [
+        "That's it. That's the truth."
+      ]
+    }
   ];
 
-  const [visibleReasons, setVisibleReasons] = useState<number[]>([]);
+  const [visibleVerses, setVisibleVerses] = useState<number[]>([]);
 
   useEffect(() => {
-    reasons.forEach((_, index) => {
+    verses.forEach((_, index) => {
       setTimeout(() => {
-        setVisibleReasons((prev) => [...prev, index]);
-      }, index * 400);
+        setVisibleVerses((prev) => [...prev, index]);
+      }, index * 600);
     });
   }, []);
 
@@ -50,62 +72,54 @@ const WhyILoveYouPage = () => {
           <h1 className="font-display text-4xl md:text-6xl text-foreground mb-4">
             Why I <span className="text-rose glow-text animate-heartbeat inline-block">Love</span> You
           </h1>
-          <p className="font-body text-foreground/70 max-w-xl mx-auto">
-            A million reasons could never be enough, but here are just a few...
-          </p>
         </motion.div>
 
-        {/* Reasons List */}
-        <div className="max-w-3xl mx-auto space-y-4">
-          {reasons.map((reason, index) => (
+        {/* Verses */}
+        <div className="max-w-3xl mx-auto space-y-8">
+          {verses.map((verse, index) => (
             <motion.div
               key={index}
-              className={`glass-card p-6 flex items-center gap-4 transition-all duration-500 ${
-                visibleReasons.includes(index) ? "opacity-100" : "opacity-0"
+              className={`glass-card p-8 transition-all duration-700 ${
+                visibleVerses.includes(index) ? "opacity-100" : "opacity-0"
               }`}
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={
-                visibleReasons.includes(index)
-                  ? { opacity: 1, x: 0 }
-                  : { opacity: 0, x: -30 }
+                visibleVerses.includes(index)
+                  ? { opacity: 1, y: 0 }
+                  : { opacity: 0, y: 30 }
               }
-              whileHover={{ x: 10, scale: 1.02 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.8 }}
             >
-              <motion.div
-                className="flex-shrink-0 w-8 h-8 rounded-full bg-rose/20 flex items-center justify-center"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-              >
-                <span className="font-display text-rose text-sm">
-                  {index + 1}
-                </span>
-              </motion.div>
+              <div className="flex items-center gap-3 mb-4">
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                >
+                  <Heart className="w-5 h-5 text-rose" fill="currentColor" />
+                </motion.div>
+                <h3 className="font-display text-xl text-rose/80">{verse.title}</h3>
+              </div>
               
-              <p className="font-body text-lg text-foreground/90">
-                {reason}
-              </p>
-
-              <motion.div
-                className="ml-auto"
-                animate={{ 
-                  scale: [1, 1.3, 1],
-                  rotate: [0, 10, -10, 0]
-                }}
-                transition={{ duration: 3, repeat: Infinity, delay: index * 0.3 }}
-              >
-                <Heart className="w-5 h-5 text-rose/50" fill="currentColor" />
-              </motion.div>
+              <div className="space-y-2 pl-8">
+                {verse.lines.map((line, lineIndex) => (
+                  <p 
+                    key={lineIndex} 
+                    className="font-body text-lg text-foreground/90 leading-relaxed italic"
+                  >
+                    {line}
+                  </p>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Infinite Love Message */}
+        {/* Closing Message */}
         <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 4 }}
+          transition={{ duration: 1, delay: 3 }}
         >
           <div className="inline-block relative">
             <motion.div
@@ -118,10 +132,7 @@ const WhyILoveYouPage = () => {
             />
             <div className="glass-card px-10 py-6 relative">
               <p className="font-display text-2xl md:text-3xl text-foreground">
-                And <span className="text-rose">infinite</span> more reasons...
-              </p>
-              <p className="font-body text-foreground/70 mt-2">
-                that words could never capture
+                Forever <span className="text-rose">yours</span>
               </p>
               <motion.div
                 className="flex justify-center gap-2 mt-4"
