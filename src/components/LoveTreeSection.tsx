@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import loveTree from "@/assets/love-tree.png";
+import { useState, useRef } from "react";
 
 const FallingLeaf = ({ delay, x }: { delay: number; x: number }) => (
   <motion.div
@@ -32,6 +31,7 @@ const FallingLeaf = ({ delay, x }: { delay: number; x: number }) => (
 
 const LoveTreeSection = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const leaves = Array.from({ length: 15 }, (_, i) => ({
     delay: i * 0.8,
@@ -74,7 +74,7 @@ const LoveTreeSection = () => {
             <FallingLeaf key={i} delay={leaf.delay} x={leaf.x} />
           ))}
 
-          {/* Tree Image */}
+          {/* Tree Video */}
           <motion.div
             className="relative"
             onMouseEnter={() => setIsHovered(true)}
@@ -82,17 +82,18 @@ const LoveTreeSection = () => {
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.5 }}
           >
-            <motion.img
-              src={loveTree}
-              alt="Magical love tree with glowing heart-shaped leaves"
+            <motion.video
+              ref={videoRef}
+              src="/videos/love-tree.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
               className="w-full h-auto rounded-3xl"
               animate={{
                 filter: isHovered
                   ? "drop-shadow(0 0 40px hsla(340, 80%, 70%, 0.6))"
                   : "drop-shadow(0 0 20px hsla(340, 80%, 70%, 0.3))",
-              }}
-              style={{
-                animation: "sway 6s ease-in-out infinite",
               }}
             />
 
