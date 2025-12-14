@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Play, Pause, X } from "lucide-react";
@@ -161,6 +161,17 @@ const PhotoGallery = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const dialogVideoRef = useRef<HTMLVideoElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.6, 0.85]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -187,10 +198,16 @@ const PhotoGallery = () => {
 
   return (
     <PageLayout>
-      {/* Hero Section with Video Background */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-        {/* Video Background */}
-        <div className="absolute inset-0">
+      {/* Hero Section with Parallax Video Background */}
+      <section 
+        ref={heroRef}
+        className="relative min-h-[60vh] flex items-center justify-center overflow-hidden"
+      >
+        {/* Parallax Video Background */}
+        <motion.div 
+          className="absolute inset-0"
+          style={{ y: videoY, scale: videoScale }}
+        >
           <video
             className="w-full h-full object-cover"
             src="/videos/love-tree.mp4"
@@ -199,25 +216,33 @@ const PhotoGallery = () => {
             muted
             playsInline
           />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-midnight-deep/60" />
-          
-          {/* Romantic glow effect */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(circle, hsla(340, 80%, 70%, 0.2) 0%, transparent 70%)",
-            }}
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{ duration: 6, repeat: Infinity }}
-          />
-        </div>
+        </motion.div>
+        
+        {/* Dynamic overlay that darkens on scroll */}
+        <motion.div 
+          className="absolute inset-0 bg-midnight-deep"
+          style={{ opacity: overlayOpacity }}
+        />
+        
+        {/* Romantic glow effect */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, hsla(340, 80%, 70%, 0.2) 0%, transparent 70%)",
+          }}
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{ duration: 6, repeat: Infinity }}
+        />
 
-        <div className="relative z-10 text-center px-6 max-w-4xl">
+        {/* Parallax Content */}
+        <motion.div 
+          className="relative z-10 text-center px-6 max-w-4xl"
+          style={{ y: contentY }}
+        >
           <motion.h1
             className="font-display text-5xl md:text-7xl text-foreground mb-8 glow-text"
             initial={{ opacity: 0, y: 30 }}
@@ -234,7 +259,7 @@ const PhotoGallery = () => {
               delay={500}
             />
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Gallery Section */}
