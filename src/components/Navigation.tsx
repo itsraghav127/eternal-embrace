@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { Heart, Image, Video, Gamepad2, Home, Sparkles, Crown, Shield } from "lucide-react";
+import { Heart, Image, Video, Gamepad2, Home, Sparkles, Crown, Shield, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const navItems = [
   { path: "/", label: "Home", icon: Home },
@@ -15,6 +16,7 @@ const navItems = [
 
 const Navigation = () => {
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <motion.nav
@@ -24,7 +26,8 @@ const Navigation = () => {
       transition={{ duration: 0.8, delay: 0.5 }}
     >
       <div className="max-w-4xl mx-auto">
-        <div className="glass-card px-6 py-3 flex items-center justify-center gap-2 md:gap-8">
+        {/* Desktop Navigation */}
+        <div className="glass-card px-4 py-3 hidden lg:flex items-center justify-center gap-2">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             const Icon = item.icon;
@@ -32,7 +35,7 @@ const Navigation = () => {
             return (
               <Link key={item.path} to={item.path}>
                 <motion.div
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                  className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300 ${
                     isActive
                       ? "bg-rose/30 text-rose"
                       : "text-foreground/70 hover:text-rose hover:bg-rose/10"
@@ -41,13 +44,69 @@ const Navigation = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Icon className="w-4 h-4" />
-                  <span className="font-body text-sm md:text-base font-medium hidden sm:inline">
-                    {item.label}
-                  </span>
+                  <span className="font-body text-sm font-medium">{item.label}</span>
                 </motion.div>
               </Link>
             );
           })}
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="lg:hidden">
+          <div className="glass-card px-4 py-3 flex items-center justify-between">
+            <Link to="/" className="flex items-center gap-2">
+              <Heart className="w-5 h-5 text-rose" />
+              <span className="font-display text-lg text-foreground">Our Love</span>
+            </Link>
+            
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-full text-foreground/70 hover:text-rose hover:bg-rose/10 transition-colors"
+              whileTap={{ scale: 0.95 }}
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </motion.button>
+          </div>
+
+          {/* Mobile Menu Dropdown */}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                className="glass-card mt-2 py-2 overflow-hidden"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {navItems.map((item, index) => {
+                  const isActive = location.pathname === item.path;
+                  const Icon = item.icon;
+
+                  return (
+                    <motion.div
+                      key={item.path}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.2, delay: index * 0.05 }}
+                    >
+                      <Link
+                        to={item.path}
+                        onClick={() => setIsOpen(false)}
+                        className={`flex items-center gap-3 px-4 py-3 transition-all duration-300 ${
+                          isActive
+                            ? "bg-rose/20 text-rose border-l-2 border-rose"
+                            : "text-foreground/70 hover:text-rose hover:bg-rose/10"
+                        }`}
+                      >
+                        <Icon className="w-5 h-5" />
+                        <span className="font-body font-medium">{item.label}</span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </motion.nav>
