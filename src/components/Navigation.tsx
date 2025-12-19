@@ -5,11 +5,11 @@ import { useState } from "react";
 
 const navItems = [
   { path: "/", label: "Home", icon: Home },
+  { path: "/confession", label: "Confession", icon: Video },
   { path: "/gallery", label: "Gallery", icon: Image },
   { path: "/intentions", label: "Intentions", icon: Sparkles },
   { path: "/promises", label: "Promises", icon: Crown },
   { path: "/why-i-love-you", label: "Why I Love You", icon: Heart },
-  { path: "/confession", label: "Confession", icon: Video },
   { path: "/love-game", label: "Love Game", icon: Gamepad2 },
   { path: "/admin", label: "Admin", icon: Shield },
 ];
