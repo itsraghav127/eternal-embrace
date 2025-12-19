@@ -56,7 +56,7 @@ const Navigation = () => {
           <div className="glass-card px-4 py-3 flex items-center justify-between">
             <Link to="/" className="flex items-center gap-2">
               <Heart className="w-5 h-5 text-rose" />
-              <span className="font-display text-lg text-foreground">Our Love</span>
+              <span className="font-display text-lg text-foreground">Axmi</span>
             </Link>
             
             <motion.button
