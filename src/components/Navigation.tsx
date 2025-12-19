@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { Heart, Image, Video, Gamepad2, Home, Sparkles, Crown, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Heart, Image, Video, Gamepad2, Home, Sparkles, Crown, Shield } from "lucide-react";
 
 const navItems = [
   { path: "/", label: "Home", icon: Home },
@@ -11,6 +10,7 @@ const navItems = [
   { path: "/why-i-love-you", label: "Why I Love You", icon: Heart },
   { path: "/confession", label: "Confession", icon: Video },
   { path: "/love-game", label: "Love Game", icon: Gamepad2 },
+  { path: "/admin", label: "Admin", icon: Shield },
 ];
 
 const Navigation = () => {

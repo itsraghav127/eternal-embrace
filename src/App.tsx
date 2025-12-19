@@ -10,6 +10,7 @@ import LoveGame from "./pages/LoveGame";
 import IntentionPage from "./pages/IntentionPage";
 import PromisePage from "./pages/PromisePage";
 import WhyILoveYouPage from "./pages/WhyILoveYouPage";
+import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/intentions" element={<IntentionPage />} />
           <Route path="/promises" element={<PromisePage />} />
           <Route path="/why-i-love-you" element={<WhyILoveYouPage />} />
+          <Route path="/admin" element={<AdminPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
