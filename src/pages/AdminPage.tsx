@@ -3,7 +3,7 @@ import { Shield, Settings, Users, BarChart3, Bell, LogOut } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
+import adminAvatar from "@/assets/admin-avatar.webp";
 const AdminPage = () => {
   const adminName = "Raghav";
 
@@ -86,8 +86,8 @@ const AdminPage = () => {
             <Card className="glass-card border-rose/20 mb-12">
               <CardHeader>
                 <CardTitle className="font-display text-2xl text-foreground flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-rose to-blush flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">R</span>
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-rose/30">
+                    <img src={adminAvatar} alt="Admin Avatar" className="w-full h-full object-cover" />
                   </div>
                   Admin Profile
                 </CardTitle>
