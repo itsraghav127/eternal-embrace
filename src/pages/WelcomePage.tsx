@@ -89,7 +89,7 @@ const WelcomePage = () => {
             >
               My Heart Beats
               <br />
-              <span className="text-rose italic">Only For You</span>
+              <span className="text-rose italic">Only For You Axmi</span>
             </motion.h1>
 
             <motion.p
